@@ -15,7 +15,7 @@ class CreateInputTypesTable extends Migration {
 		Schema::create('input_types', function(Blueprint $table)
 		{
 			$table->integer('id', true);
-			$table->string('input_type_name', 80)->unique('survey_name_UNIQUE');
+			$table->string('input_type_name', 80)->unique();
 		});
 	}
 

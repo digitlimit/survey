@@ -16,8 +16,8 @@ class CreateSurveyHeadersTable extends Migration {
 		{
 			$table->integer('id', true);
 			$table->integer('organization_id')->index('fk_surveys_organizations1');
-			$table->string('survey_name', 80)->nullable()->unique('survey_name_UNIQUE');
-			$table->string('instructions', 4096)->nullable();
+			$table->string('survey_name', 80)->nullable()->unique();
+			$table->text('instructions')->nullable();
 			$table->string('other_header_info')->nullable();
 		});
 	}

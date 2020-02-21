@@ -23,7 +23,7 @@ class CreateQuestionsTable extends Migration {
 			$table->boolean('question_required_yn')->nullable();
 			$table->boolean('answer_required_yn')->nullable()->default(1);
 			$table->integer('option_group_id')->nullable()->index('fk_questions_option_type_group1');
-			$table->boolean('allow_mutiple_option_answers_yn')->nullable()->default(0)->unique('allow_mutiple_option_answers_yn_UNIQUE');
+			$table->boolean('allow_mutiple_option_answers_yn')->nullable()->default(0)->unique();
 			$table->integer('dependent_question_id')->nullable();
 			$table->integer('dependent_question_option_id')->nullable();
 			$table->integer('dependent_answer_id')->nullable();

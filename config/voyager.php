@@ -27,11 +27,13 @@ return [
     */
 
     'controllers' => [
-        'namespace' => 'TCG\\Voyager\\Http\\Controllers',
+//        'namespace' => 'TCG\\Voyager\\Http\\Controllers',
+        'namespace' => 'App\\Http\\Controllers\\Voyager',
     ],
 
     /*
-    |--------------------------------------------------------------------------
+    |----------------------------
+    ----------------------------------------------
     | Models config
     |--------------------------------------------------------------------------
     |
@@ -42,7 +44,7 @@ return [
     */
 
     'models' => [
-        //'namespace' => 'App\\',
+        'namespace' => 'App\\Models\\',
     ],
 
     /*
