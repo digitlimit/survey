@@ -1,231 +1,355 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use TCG\Voyager\Models\Category;
-use TCG\Voyager\Models\DataType;
-use TCG\Voyager\Models\MenuItem;
-use TCG\Voyager\Models\Page;
-use TCG\Voyager\Models\Translation;
 
 class TranslationsTableSeeder extends Seeder
 {
+
     /**
-     * Auto generated seed file.
+     * Auto generated seed file
      *
      * @return void
      */
     public function run()
     {
-        $this->dataTypesTranslations();
-        $this->categoriesTranslations();
-        $this->pagesTranslations();
-        $this->menusTranslations();
-    }
+        
 
-    /**
-     * Auto generate Categories Translations.
-     *
-     * @return void
-     */
-    private function categoriesTranslations()
-    {
-        // Adding translations for 'categories'
-        //
-        $cat = Category::where('slug', 'category-1')->firstOrFail();
-        if ($cat->exists) {
-            $this->trans('pt', $this->arr(['categories', 'slug'], $cat->id), 'categoria-1');
-            $this->trans('pt', $this->arr(['categories', 'name'], $cat->id), 'Categoria 1');
-        }
-        $cat = Category::where('slug', 'category-2')->firstOrFail();
-        if ($cat->exists) {
-            $this->trans('pt', $this->arr(['categories', 'slug'], $cat->id), 'categoria-2');
-            $this->trans('pt', $this->arr(['categories', 'name'], $cat->id), 'Categoria 2');
-        }
-    }
-
-    /**
-     * Auto generate DataTypes Translations.
-     *
-     * @return void
-     */
-    private function dataTypesTranslations()
-    {
-        // Adding translations for 'display_name_singular'
-        //
-        $_fld = 'display_name_singular';
-        $_tpl = ['data_types', $_fld];
-        $dtp = DataType::where($_fld, __('voyager::seeders.data_types.post.singular'))->firstOrFail();
-        if ($dtp->exists) {
-            $this->trans('pt', $this->arr($_tpl, $dtp->id), 'Post');
-        }
-        $dtp = DataType::where($_fld, __('voyager::seeders.data_types.page.singular'))->firstOrFail();
-        if ($dtp->exists) {
-            $this->trans('pt', $this->arr($_tpl, $dtp->id), 'Página');
-        }
-        $dtp = DataType::where($_fld, __('voyager::seeders.data_types.user.singular'))->firstOrFail();
-        if ($dtp->exists) {
-            $this->trans('pt', $this->arr($_tpl, $dtp->id), 'Utilizador');
-        }
-        $dtp = DataType::where($_fld, __('voyager::seeders.data_types.category.singular'))->firstOrFail();
-        if ($dtp->exists) {
-            $this->trans('pt', $this->arr($_tpl, $dtp->id), 'Categoria');
-        }
-        $dtp = DataType::where($_fld, __('voyager::seeders.data_types.menu.singular'))->firstOrFail();
-        if ($dtp->exists) {
-            $this->trans('pt', $this->arr($_tpl, $dtp->id), 'Menu');
-        }
-        $dtp = DataType::where($_fld, __('voyager::seeders.data_types.role.singular'))->firstOrFail();
-        if ($dtp->exists) {
-            $this->trans('pt', $this->arr($_tpl, $dtp->id), 'Função');
-        }
-
-        // Adding translations for 'display_name_plural'
-        //
-        $_fld = 'display_name_plural';
-        $_tpl = ['data_types', $_fld];
-        $dtp = DataType::where($_fld, __('voyager::seeders.data_types.post.plural'))->firstOrFail();
-        if ($dtp->exists) {
-            $this->trans('pt', $this->arr($_tpl, $dtp->id), 'Posts');
-        }
-        $dtp = DataType::where($_fld, __('voyager::seeders.data_types.page.plural'))->firstOrFail();
-        if ($dtp->exists) {
-            $this->trans('pt', $this->arr($_tpl, $dtp->id), 'Páginas');
-        }
-        $dtp = DataType::where($_fld, __('voyager::seeders.data_types.user.plural'))->firstOrFail();
-        if ($dtp->exists) {
-            $this->trans('pt', $this->arr($_tpl, $dtp->id), 'Utilizadores');
-        }
-        $dtp = DataType::where($_fld, __('voyager::seeders.data_types.category.plural'))->firstOrFail();
-        if ($dtp->exists) {
-            $this->trans('pt', $this->arr($_tpl, $dtp->id), 'Categorias');
-        }
-        $dtp = DataType::where($_fld, __('voyager::seeders.data_types.menu.plural'))->firstOrFail();
-        if ($dtp->exists) {
-            $this->trans('pt', $this->arr($_tpl, $dtp->id), 'Menus');
-        }
-        $dtp = DataType::where($_fld, __('voyager::seeders.data_types.role.plural'))->firstOrFail();
-        if ($dtp->exists) {
-            $this->trans('pt', $this->arr($_tpl, $dtp->id), 'Funções');
-        }
-    }
-
-    /**
-     * Auto generate Pages Translations.
-     *
-     * @return void
-     */
-    private function pagesTranslations()
-    {
-        $page = Page::where('slug', 'hello-world')->firstOrFail();
-        if ($page->exists) {
-            $_arr = $this->arr(['pages', 'title'], $page->id);
-            $this->trans('pt', $_arr, 'Olá Mundo');
-            /**
-             * For configuring additional languages use it e.g.
-             *
-             * ```
-             *   $this->trans('es', $_arr, 'hola-mundo');
-             *   $this->trans('de', $_arr, 'hallo-welt');
-             * ```
-             */
-            $_arr = $this->arr(['pages', 'slug'], $page->id);
-            $this->trans('pt', $_arr, 'ola-mundo');
-
-            $_arr = $this->arr(['pages', 'body'], $page->id);
-            $this->trans('pt', $_arr, '<p>Olá Mundo. Scallywag grog swab Cat o\'nine tails scuttle rigging hardtack cable nipper Yellow Jack. Handsomely spirits knave lad killick landlubber or just lubber deadlights chantey pinnace crack Jennys tea cup. Provost long clothes black spot Yellow Jack bilged on her anchor league lateen sail case shot lee tackle.</p>'
-                ."\r\n".'<p>Ballast spirits fluke topmast me quarterdeck schooner landlubber or just lubber gabion belaying pin. Pinnace stern galleon starboard warp carouser to go on account dance the hempen jig jolly boat measured fer yer chains. Man-of-war fire in the hole nipperkin handsomely doubloon barkadeer Brethren of the Coast gibbet driver squiffy.</p>');
-        }
-    }
-
-    /**
-     * Auto generate Menus Translations.
-     *
-     * @return void
-     */
-    private function menusTranslations()
-    {
-        $_tpl = ['menu_items', 'title'];
-        $_item = $this->findMenuItem(__('voyager::seeders.menu_items.dashboard'));
-        if ($_item->exists) {
-            $this->trans('pt', $this->arr($_tpl, $_item->id), 'Painel de Controle');
-        }
-
-        $_item = $this->findMenuItem(__('voyager::seeders.menu_items.media'));
-        if ($_item->exists) {
-            $this->trans('pt', $this->arr($_tpl, $_item->id), 'Media');
-        }
-
-        $_item = $this->findMenuItem(__('voyager::seeders.menu_items.posts'));
-        if ($_item->exists) {
-            $this->trans('pt', $this->arr($_tpl, $_item->id), 'Publicações');
-        }
-
-        $_item = $this->findMenuItem(__('voyager::seeders.menu_items.users'));
-        if ($_item->exists) {
-            $this->trans('pt', $this->arr($_tpl, $_item->id), 'Utilizadores');
-        }
-
-        $_item = $this->findMenuItem(__('voyager::seeders.menu_items.categories'));
-        if ($_item->exists) {
-            $this->trans('pt', $this->arr($_tpl, $_item->id), 'Categorias');
-        }
-
-        $_item = $this->findMenuItem(__('voyager::seeders.menu_items.pages'));
-        if ($_item->exists) {
-            $this->trans('pt', $this->arr($_tpl, $_item->id), 'Páginas');
-        }
-
-        $_item = $this->findMenuItem(__('voyager::seeders.menu_items.roles'));
-        if ($_item->exists) {
-            $this->trans('pt', $this->arr($_tpl, $_item->id), 'Funções');
-        }
-
-        $_item = $this->findMenuItem(__('voyager::seeders.menu_items.tools'));
-        if ($_item->exists) {
-            $this->trans('pt', $this->arr($_tpl, $_item->id), 'Ferramentas');
-        }
-
-        $_item = $this->findMenuItem(__('voyager::seeders.menu_items.menu_builder'));
-        if ($_item->exists) {
-            $this->trans('pt', $this->arr($_tpl, $_item->id), 'Menus');
-        }
-
-        $_item = $this->findMenuItem(__('voyager::seeders.menu_items.database'));
-        if ($_item->exists) {
-            $this->trans('pt', $this->arr($_tpl, $_item->id), 'Base de dados');
-        }
-
-        $_item = $this->findMenuItem(__('voyager::seeders.menu_items.settings'));
-        if ($_item->exists) {
-            $this->trans('pt', $this->arr($_tpl, $_item->id), 'Configurações');
-        }
-    }
-
-    private function findMenuItem($title)
-    {
-        return MenuItem::where('title', $title)->firstOrFail();
-    }
-
-    private function arr($par, $id)
-    {
-        return [
-            'table_name'  => $par[0],
-            'column_name' => $par[1],
-            'foreign_key' => $id,
-        ];
-    }
-
-    private function trans($lang, $keys, $value)
-    {
-        $_t = Translation::firstOrNew(array_merge($keys, [
-            'locale' => $lang,
-        ]));
-
-        if (!$_t->exists) {
-            $_t->fill(array_merge(
-                $keys,
-                ['value' => $value]
-            ))->save();
-        }
+        \DB::table('translations')->delete();
+        
+        \DB::table('translations')->insert(array (
+            0 => 
+            array (
+                'id' => 1,
+                'table_name' => 'data_types',
+                'column_name' => 'display_name_singular',
+                'foreign_key' => 6,
+                'locale' => 'pt',
+                'value' => 'Post',
+                'created_at' => '2020-02-22 22:13:53',
+                'updated_at' => '2020-02-22 22:13:53',
+            ),
+            1 => 
+            array (
+                'id' => 2,
+                'table_name' => 'data_types',
+                'column_name' => 'display_name_singular',
+                'foreign_key' => 5,
+                'locale' => 'pt',
+                'value' => 'Página',
+                'created_at' => '2020-02-22 22:13:53',
+                'updated_at' => '2020-02-22 22:13:53',
+            ),
+            2 => 
+            array (
+                'id' => 3,
+                'table_name' => 'data_types',
+                'column_name' => 'display_name_singular',
+                'foreign_key' => 2,
+                'locale' => 'pt',
+                'value' => 'Utilizador',
+                'created_at' => '2020-02-22 22:13:53',
+                'updated_at' => '2020-02-22 22:13:53',
+            ),
+            3 => 
+            array (
+                'id' => 4,
+                'table_name' => 'data_types',
+                'column_name' => 'display_name_singular',
+                'foreign_key' => 1,
+                'locale' => 'pt',
+                'value' => 'Categoria',
+                'created_at' => '2020-02-22 22:13:53',
+                'updated_at' => '2020-02-22 22:13:53',
+            ),
+            4 => 
+            array (
+                'id' => 5,
+                'table_name' => 'data_types',
+                'column_name' => 'display_name_singular',
+                'foreign_key' => 3,
+                'locale' => 'pt',
+                'value' => 'Menu',
+                'created_at' => '2020-02-22 22:13:53',
+                'updated_at' => '2020-02-22 22:13:53',
+            ),
+            5 => 
+            array (
+                'id' => 6,
+                'table_name' => 'data_types',
+                'column_name' => 'display_name_singular',
+                'foreign_key' => 4,
+                'locale' => 'pt',
+                'value' => 'Função',
+                'created_at' => '2020-02-22 22:13:53',
+                'updated_at' => '2020-02-22 22:13:53',
+            ),
+            6 => 
+            array (
+                'id' => 7,
+                'table_name' => 'data_types',
+                'column_name' => 'display_name_plural',
+                'foreign_key' => 6,
+                'locale' => 'pt',
+                'value' => 'Posts',
+                'created_at' => '2020-02-22 22:13:53',
+                'updated_at' => '2020-02-22 22:13:53',
+            ),
+            7 => 
+            array (
+                'id' => 8,
+                'table_name' => 'data_types',
+                'column_name' => 'display_name_plural',
+                'foreign_key' => 5,
+                'locale' => 'pt',
+                'value' => 'Páginas',
+                'created_at' => '2020-02-22 22:13:53',
+                'updated_at' => '2020-02-22 22:13:53',
+            ),
+            8 => 
+            array (
+                'id' => 9,
+                'table_name' => 'data_types',
+                'column_name' => 'display_name_plural',
+                'foreign_key' => 2,
+                'locale' => 'pt',
+                'value' => 'Utilizadores',
+                'created_at' => '2020-02-22 22:13:53',
+                'updated_at' => '2020-02-22 22:13:53',
+            ),
+            9 => 
+            array (
+                'id' => 10,
+                'table_name' => 'data_types',
+                'column_name' => 'display_name_plural',
+                'foreign_key' => 1,
+                'locale' => 'pt',
+                'value' => 'Categorias',
+                'created_at' => '2020-02-22 22:13:53',
+                'updated_at' => '2020-02-22 22:13:53',
+            ),
+            10 => 
+            array (
+                'id' => 11,
+                'table_name' => 'data_types',
+                'column_name' => 'display_name_plural',
+                'foreign_key' => 3,
+                'locale' => 'pt',
+                'value' => 'Menus',
+                'created_at' => '2020-02-22 22:13:53',
+                'updated_at' => '2020-02-22 22:13:53',
+            ),
+            11 => 
+            array (
+                'id' => 12,
+                'table_name' => 'data_types',
+                'column_name' => 'display_name_plural',
+                'foreign_key' => 4,
+                'locale' => 'pt',
+                'value' => 'Funções',
+                'created_at' => '2020-02-22 22:13:53',
+                'updated_at' => '2020-02-22 22:13:53',
+            ),
+            12 => 
+            array (
+                'id' => 13,
+                'table_name' => 'categories',
+                'column_name' => 'slug',
+                'foreign_key' => 1,
+                'locale' => 'pt',
+                'value' => 'categoria-1',
+                'created_at' => '2020-02-22 22:13:53',
+                'updated_at' => '2020-02-22 22:13:53',
+            ),
+            13 => 
+            array (
+                'id' => 14,
+                'table_name' => 'categories',
+                'column_name' => 'name',
+                'foreign_key' => 1,
+                'locale' => 'pt',
+                'value' => 'Categoria 1',
+                'created_at' => '2020-02-22 22:13:53',
+                'updated_at' => '2020-02-22 22:13:53',
+            ),
+            14 => 
+            array (
+                'id' => 15,
+                'table_name' => 'categories',
+                'column_name' => 'slug',
+                'foreign_key' => 2,
+                'locale' => 'pt',
+                'value' => 'categoria-2',
+                'created_at' => '2020-02-22 22:13:53',
+                'updated_at' => '2020-02-22 22:13:53',
+            ),
+            15 => 
+            array (
+                'id' => 16,
+                'table_name' => 'categories',
+                'column_name' => 'name',
+                'foreign_key' => 2,
+                'locale' => 'pt',
+                'value' => 'Categoria 2',
+                'created_at' => '2020-02-22 22:13:53',
+                'updated_at' => '2020-02-22 22:13:53',
+            ),
+            16 => 
+            array (
+                'id' => 17,
+                'table_name' => 'pages',
+                'column_name' => 'title',
+                'foreign_key' => 1,
+                'locale' => 'pt',
+                'value' => 'Olá Mundo',
+                'created_at' => '2020-02-22 22:13:53',
+                'updated_at' => '2020-02-22 22:13:53',
+            ),
+            17 => 
+            array (
+                'id' => 18,
+                'table_name' => 'pages',
+                'column_name' => 'slug',
+                'foreign_key' => 1,
+                'locale' => 'pt',
+                'value' => 'ola-mundo',
+                'created_at' => '2020-02-22 22:13:53',
+                'updated_at' => '2020-02-22 22:13:53',
+            ),
+            18 => 
+            array (
+                'id' => 19,
+                'table_name' => 'pages',
+                'column_name' => 'body',
+                'foreign_key' => 1,
+                'locale' => 'pt',
+                'value' => '<p>Olá Mundo. Scallywag grog swab Cat o\'nine tails scuttle rigging hardtack cable nipper Yellow Jack. Handsomely spirits knave lad killick landlubber or just lubber deadlights chantey pinnace crack Jennys tea cup. Provost long clothes black spot Yellow Jack bilged on her anchor league lateen sail case shot lee tackle.</p>
+<p>Ballast spirits fluke topmast me quarterdeck schooner landlubber or just lubber gabion belaying pin. Pinnace stern galleon starboard warp carouser to go on account dance the hempen jig jolly boat measured fer yer chains. Man-of-war fire in the hole nipperkin handsomely doubloon barkadeer Brethren of the Coast gibbet driver squiffy.</p>',
+                'created_at' => '2020-02-22 22:13:53',
+                'updated_at' => '2020-02-22 22:13:53',
+            ),
+            19 => 
+            array (
+                'id' => 20,
+                'table_name' => 'menu_items',
+                'column_name' => 'title',
+                'foreign_key' => 2,
+                'locale' => 'pt',
+                'value' => 'Painel de Controle',
+                'created_at' => '2020-02-22 22:13:53',
+                'updated_at' => '2020-02-22 22:13:53',
+            ),
+            20 => 
+            array (
+                'id' => 21,
+                'table_name' => 'menu_items',
+                'column_name' => 'title',
+                'foreign_key' => 3,
+                'locale' => 'pt',
+                'value' => 'Media',
+                'created_at' => '2020-02-22 22:13:53',
+                'updated_at' => '2020-02-22 22:13:53',
+            ),
+            21 => 
+            array (
+                'id' => 22,
+                'table_name' => 'menu_items',
+                'column_name' => 'title',
+                'foreign_key' => 13,
+                'locale' => 'pt',
+                'value' => 'Publicações',
+                'created_at' => '2020-02-22 22:13:53',
+                'updated_at' => '2020-02-22 22:13:53',
+            ),
+            22 => 
+            array (
+                'id' => 23,
+                'table_name' => 'menu_items',
+                'column_name' => 'title',
+                'foreign_key' => 4,
+                'locale' => 'pt',
+                'value' => 'Utilizadores',
+                'created_at' => '2020-02-22 22:13:53',
+                'updated_at' => '2020-02-22 22:13:53',
+            ),
+            23 => 
+            array (
+                'id' => 24,
+                'table_name' => 'menu_items',
+                'column_name' => 'title',
+                'foreign_key' => 1,
+                'locale' => 'pt',
+                'value' => 'Categorias',
+                'created_at' => '2020-02-22 22:13:53',
+                'updated_at' => '2020-02-22 22:13:53',
+            ),
+            24 => 
+            array (
+                'id' => 25,
+                'table_name' => 'menu_items',
+                'column_name' => 'title',
+                'foreign_key' => 12,
+                'locale' => 'pt',
+                'value' => 'Páginas',
+                'created_at' => '2020-02-22 22:13:53',
+                'updated_at' => '2020-02-22 22:13:53',
+            ),
+            25 => 
+            array (
+                'id' => 26,
+                'table_name' => 'menu_items',
+                'column_name' => 'title',
+                'foreign_key' => 5,
+                'locale' => 'pt',
+                'value' => 'Funções',
+                'created_at' => '2020-02-22 22:13:53',
+                'updated_at' => '2020-02-22 22:13:53',
+            ),
+            26 => 
+            array (
+                'id' => 27,
+                'table_name' => 'menu_items',
+                'column_name' => 'title',
+                'foreign_key' => 6,
+                'locale' => 'pt',
+                'value' => 'Ferramentas',
+                'created_at' => '2020-02-22 22:13:53',
+                'updated_at' => '2020-02-22 22:13:53',
+            ),
+            27 => 
+            array (
+                'id' => 28,
+                'table_name' => 'menu_items',
+                'column_name' => 'title',
+                'foreign_key' => 7,
+                'locale' => 'pt',
+                'value' => 'Menus',
+                'created_at' => '2020-02-22 22:13:53',
+                'updated_at' => '2020-02-22 22:13:53',
+            ),
+            28 => 
+            array (
+                'id' => 29,
+                'table_name' => 'menu_items',
+                'column_name' => 'title',
+                'foreign_key' => 8,
+                'locale' => 'pt',
+                'value' => 'Base de dados',
+                'created_at' => '2020-02-22 22:13:53',
+                'updated_at' => '2020-02-22 22:13:53',
+            ),
+            29 => 
+            array (
+                'id' => 30,
+                'table_name' => 'menu_items',
+                'column_name' => 'title',
+                'foreign_key' => 11,
+                'locale' => 'pt',
+                'value' => 'Configurações',
+                'created_at' => '2020-02-22 22:13:53',
+                'updated_at' => '2020-02-22 22:13:53',
+            ),
+        ));
+        
+        
     }
 }

@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class PostsTableSeeder extends Seeder
+class UnitOfMeasuresTableSeeder extends Seeder
 {
 
     /**
@@ -14,7 +14,7 @@ class PostsTableSeeder extends Seeder
     {
         
 
-        \DB::table('posts')->delete();
+        \DB::table('unit_of_measures')->delete();
         
         
         

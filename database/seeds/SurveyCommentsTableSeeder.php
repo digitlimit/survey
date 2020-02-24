@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class PostsTableSeeder extends Seeder
+class SurveyCommentsTableSeeder extends Seeder
 {
 
     /**
@@ -14,7 +14,7 @@ class PostsTableSeeder extends Seeder
     {
         
 
-        \DB::table('posts')->delete();
+        \DB::table('survey_comments')->delete();
         
         
         
