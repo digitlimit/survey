@@ -1,10 +1,14 @@
 @foreach($survey->survey_sections as $section)
 
-    @php $subsections = $section->sections @endphp
+    @php
+        $subsections = $section->sections;
+        $parent_index = $loop->index + 1;
+    @endphp
 
     @if(count($subsections))
         <div class="panel panel-default survey-sections">
             <div class="panel-heading">
+                <span class="badge badge-success">{{$parent_index}}</span>
                 {{strtoupper($section->section_title)}} <br>
 {{--                <p>{{$section->section_subheading}}</p>--}}
             </div>
@@ -13,11 +17,13 @@
                 @foreach($subsections as $subsection)
                     <div class="panel panel-default survey-subsections">
                         <div class="panel-heading">
-                            {{$subsection->section_title}} <br>
+                            <span class="badge">{{$loop->index + 1}}</span> {{$subsection->section_title}} <br>
 {{--                            <p>{{$subsection->section_subheading}}</p>--}}
                         </div>
                         <div class="panel-body">
-                            Questions
+                            @include('vendor.voyager.stations.partials.questions', [
+                               'questions' => $subsection->questions
+                            ])
                         </div>
                     </div>
                 @endforeach
@@ -27,11 +33,13 @@
     @else
         <div class="panel panel-default survey-sections">
             <div class="panel-heading">
-                {{strtoupper($section->section_title)}} <br>
+                <span class="badge badge-success">{{$parent_index}}</span> {{strtoupper($section->section_title)}} <br>
 {{--                <p>{{$section->section_subheading}}</p>--}}
             </div>
             <div class="panel-body">
-                Questions
+                @include('vendor.voyager.stations.partials.questions', [
+                    'questions' => $section->questions
+                ])
             </div>
         </div>
     @endif

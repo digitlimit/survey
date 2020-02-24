@@ -28,12 +28,12 @@ class Question extends Model
 
     public function input_type()
     {
-        return $this->hasOne(InputType::class);
+        return $this->belongsTo(InputType::class);
     }
 
     public function option_group()
     {
-        return $this->hasOne(OptionGroup::class);
+        return $this->belongsTo(OptionGroup::class);
     }
 
     public function question_options()

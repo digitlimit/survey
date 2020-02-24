@@ -97,6 +97,18 @@
             border-radius: 0 !important;
 
         }
+
+        .badge-success{
+            background-color: #538225 !important;
+        }
+        .fa-info-circle{
+            color: #4d931d !important;
+        }
+
+        .question{
+            /*padding-bottom: 30px !important;*/
+            /*display: block;*/
+        }
     </style>
 @endpush
 
@@ -124,6 +136,9 @@
         }
 
         $('document').ready(function () {
+            $('[data-toggle="popover"]').popover();
+            $('[data-toggle="tooltip"]').tooltip();
+
             $('.toggleswitch').bootstrapToggle();
 
             //Init datepicker for date fields if data-datepicker attribute defined
