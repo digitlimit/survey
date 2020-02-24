@@ -320,6 +320,7 @@
                                         <div class="handler voyager-handle"></div>
                                         <input class="row_order" type="hidden" value="{{ $dataRow->order ?? $r_order }}" name="field_order_{{ $data['field'] }}">
                                     </div>
+
                                     <div class="col-xs-2">
                                         <input type="checkbox"
                                                id="field_browse_{{ $data['field'] }}"
@@ -348,7 +349,24 @@
                                                id="field_delete_{{ $data['field'] }}"
                                                name="field_delete_{{ $data['field'] }}" @if(isset($dataRow->delete) && $dataRow->delete) checked="checked" @elseif($data['key'] == 'PRI')@elseif($data['type'] == 'timestamp' && $data['field'] == 'updated_at')@elseif(!isset($dataRow->delete)) checked="checked" @endif>
                                                 <label for="field_delete_{{ $data['field'] }}">{{ __('voyager::generic.delete') }}</label><br/>
+
+                                        <input type="checkbox"
+                                               id="field_hide_in_form_{{ $data['field'] }}"
+                                               name="field_hide_in_form_{{ $data['field'] }}"
+                                               @if(isset($dataRow) && $dataRow->details && isset($dataRow->details->hide_in_form) && $dataRow->details->hide_in_form)
+                                               checked="checked"
+                                                @endif>
+                                        <label for="field_hide_in_form_{{ $data['field'] }}">{{ __('generic.hide_in_form') }} </label><br/>
+
+                                        <input type="checkbox"
+                                               id="field_hide_in_table_{{ $data['field'] }}"
+                                               name="field_hide_in_table_{{ $data['field'] }}"
+                                               @if(isset($dataRow) && $dataRow->details && isset($dataRow->details->hide_in_table) && $dataRow->details->hide_in_table)
+                                               checked="checked"
+                                                @endif>
+                                        <label for="field_hide_in_table_{{ $data['field'] }}">{{ __('generic.hide_in_table') }} </label><br/>
                                     </div>
+
                                     <div class="col-xs-2">
                                         <input type="hidden" name="field_{{ $data['field'] }}" value="{{ $data['field'] }}">
                                         @if($data['type'] == 'timestamp')

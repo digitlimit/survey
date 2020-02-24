@@ -8,7 +8,8 @@ class OptionChoice extends Model
 {
     protected $fillable = [
         'option_group_id',
-        'option_choice_name'
+        'option_choice_name',
+        'weight'
     ];
 
     public function option_group()

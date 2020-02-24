@@ -7,14 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class OptionGroup extends Model
 {
     protected $fillable = [
-        'option_group_name'
+        'name',
+        'slug',
+        'description'
     ];
 
     public function questions(){
         return $this->hasMany(Question::class);
     }
 
-    public function option_choice(){
-        return $this->hasOne(OptionChoice::class);
+    public function option_choices(){
+        return $this->hasMany(OptionChoice::class);
     }
 }

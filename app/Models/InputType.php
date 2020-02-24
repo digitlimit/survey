@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class InputType extends Model
 {
     protected $fillable = [
-        'input_type_name'
+        'name',
+        'slug'
     ];
 
     public function questions()

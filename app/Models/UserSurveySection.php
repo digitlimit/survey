@@ -15,14 +15,9 @@ class UserSurveySection extends Model
         'section_required_yn'
     ];
 
-    public function survey_header()
-    {
-        return $this->belongsTo(SurveyHeader::class);
-    }
-
     public function survey_sections()
     {
-        return $this->hasMany(SurveySection::class);
+        return $this->hasOne(SurveySection::class);
     }
 
     public function user()

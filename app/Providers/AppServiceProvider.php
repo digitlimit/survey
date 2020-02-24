@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use TCG\Voyager\Facades\Voyager;
+use App\Models\DataRow;
+use App\Observers\DataRowObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        Voyager::useModel('DataRow', DataRow::class);
     }
 
     /**
@@ -25,5 +28,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+        DataRow::observe(DataRowObserver::class);
+        Voyager::addAction(\App\Actions\Rate::class);
     }
 }

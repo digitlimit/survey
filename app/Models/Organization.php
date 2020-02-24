@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use TCG\Voyager\Traits\Spatial;
 
 class Organization extends Model
 {
+    use Spatial;
+
     protected $fillable = [
         'country_id',
         'state_id',

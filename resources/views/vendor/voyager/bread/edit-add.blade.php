@@ -58,6 +58,12 @@
                             @foreach($dataTypeRows as $row)
                                 <!-- GET THE DISPLAY OPTIONS -->
                                 @php
+                                    if(isset($row->details) && isset($row->details->hide_in_form) && $row->details->hide_in_form){
+                                        continue;
+                                    }
+                                @endphp
+
+                                @php
                                     $display_options = $row->details->display ?? NULL;
                                     if ($dataTypeContent->{$row->field.'_'.($edit ? 'edit' : 'add')}) {
                                         $dataTypeContent->{$row->field} = $dataTypeContent->{$row->field.'_'.($edit ? 'edit' : 'add')};
