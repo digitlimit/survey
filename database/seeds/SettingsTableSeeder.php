@@ -99,7 +99,7 @@ class SettingsTableSeeder extends Seeder
                 'id' => 8,
                 'key' => 'admin.loader',
                 'display_name' => 'Admin Loader',
-                'value' => '',
+                'value' => 'settings/February2020/i2Ja2nNdM8KeER7tfOJI.png',
                 'details' => '',
                 'type' => 'image',
                 'order' => 3,

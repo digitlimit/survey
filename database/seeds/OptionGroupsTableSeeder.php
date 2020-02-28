@@ -416,7 +416,7 @@ class OptionGroupsTableSeeder extends Seeder
             44 => 
             array (
                 'id' => 45,
-                'name' => ' Range of Services',
+                'name' => 'Range of Services',
                 'slug' => '',
                 'description' => NULL,
                 'created_at' => NULL,
@@ -443,7 +443,7 @@ class OptionGroupsTableSeeder extends Seeder
             47 => 
             array (
                 'id' => 48,
-                'name' => ' Sales Incentive',
+                'name' => 'Sales Incentive',
                 'slug' => '',
                 'description' => NULL,
                 'created_at' => NULL,

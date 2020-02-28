@@ -1,0 +1,1 @@
+<input type="text" required77="{{$answer_required_yn}}" class="form-control"  name="answers[{{$question->id}}]">

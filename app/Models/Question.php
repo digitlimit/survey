@@ -19,6 +19,7 @@ class Question extends Model
         'dependent_question_id',
         'dependent_question_option_id',
         'dependent_answer_id',
+        'hide'
     ];
 
     public function parent()

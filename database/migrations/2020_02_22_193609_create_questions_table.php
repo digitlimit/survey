@@ -27,6 +27,7 @@ class CreateQuestionsTable extends Migration {
 			$table->integer('dependent_question_id')->nullable();
 			$table->integer('dependent_question_option_id')->nullable();
 			$table->integer('dependent_answer_id')->nullable();
+			$table->boolean('hide')->default(false);
 			$table->timestamps();
 		});
 	}

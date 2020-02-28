@@ -16,6 +16,7 @@ class CreateOptionChoicesTable extends Migration {
 		{
 			$table->integer('id', true);
 			$table->integer('option_group_id')->index('fk_option_type_choices_option_type_group1');
+			$table->integer('input_type_id')->nullable();
 			$table->string('option_choice_name');
 			$table->integer('weight')->default(0);
 			$table->timestamps();

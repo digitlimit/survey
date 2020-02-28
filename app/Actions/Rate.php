@@ -2,6 +2,7 @@
 
 namespace App\Actions;
 
+use App\Models\StationSurvey;
 use TCG\Voyager\Actions\AbstractAction;
 
 class Rate extends AbstractAction
@@ -13,12 +14,20 @@ class Rate extends AbstractAction
 
     public function getIcon()
     {
-        return 'voyager-eye';
+        return 'fa fa-check-square-o';
     }
 
     public function getPolicy()
     {
-        return 'rate';
+        $station_survey = StationSurvey::where([
+            'station_id' => $this->data->id,
+            'survey_header_id' => 1, //TODO fix
+            'user_id' => auth()->user()->id
+        ])->count();
+
+        //TODO rated does not exists as policy , I'm ust using it to hide button
+        //when user already rated station
+        return $station_survey ? 'rated' : 'rate';
     }
 
     public function getAttributes()

@@ -22,17 +22,28 @@ class Station extends Model
         'lat'
     ];
 
+
+    public function station_survey_answers()
+    {
+        return $this->hasMany(StationSurveyAnswer::class);
+    }
+
     public function country()
     {
-        return $this->hasOne(Country::class);
+        return $this->belongsTo(Country::class);
     }
 
     public function state()
     {
-        return $this->hasOne(State::class);
+        return $this->belongsTo(State::class);
     }
 
-    public function survey_headers(){//organization_id
-        return $this->hasMany(SurveyHeader::class);
+    public function station_survey()
+    {
+        return $this->hasOne(StationSurvey::class);
+    }
+
+    public function survey_header(){//organization_id
+        return $this->belongsTo(SurveyHeader::class);
     }
 }

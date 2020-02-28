@@ -13,6 +13,11 @@ class SurveyHeader extends Model
         'other_header_info'
     ];
 
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
+    }
+
     public function organization()
     {
         return $this->belongsTo(Organization::class);

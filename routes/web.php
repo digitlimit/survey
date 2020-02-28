@@ -29,7 +29,7 @@ Route::group(['prefix' => 'admin'], function ()
         Route::get('login', ['uses' => $namespacePrefix.'VoyagerAuthController@login',     'as' => 'login']);
         Route::post('login', ['uses' => $namespacePrefix.'VoyagerAuthController@postLogin', 'as' => 'postlogin']);
 
-        Route::group(['middleware' => 'admin.user'], function () use ($namespacePrefix)
+        Route::group(['middleware' => 'voyager.admin'], function () use ($namespacePrefix)
         {
             event(new RoutingAdmin());
 
@@ -37,6 +37,9 @@ Route::group(['prefix' => 'admin'], function ()
             Route::name('stations.')->prefix('stations')->namespace('Admin')->group(function()
             {
                 Route::get('survey/{id}', 'StationController@showSurveyForm')
+                    ->name('rate');
+
+                Route::post('survey/{id}', 'StationController@storeSurveyForm')
                     ->name('rate');
             });
 

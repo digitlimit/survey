@@ -26,11 +26,25 @@
 
                 <div class="panel panel-default">
 
-                    <div class="panel-body">
-                        @include('vendor.voyager.stations.partials.survey-header')
+                    <form role="form" class="form-edit-add" action="" method="POST" enctype="multipart/form-data">
 
-                        @include('vendor.voyager.stations.partials.survey-sections')
-                    </div>
+{{--                    @if($edit)--}}
+{{--                        {{ method_field("PUT") }}--}}
+{{--                    @endif--}}
+                        <input type="hidden" name="survey" value="{{$survey->id}}">
+
+                        <div class="panel-body">
+                            @include('vendor.voyager.stations.partials.survey-header')
+                            @include('vendor.voyager.stations.partials.survey-sections')
+
+                            <button class="btn btn-success">
+                                Submit
+                            </button>
+                        </div>
+
+                        {{ csrf_field() }}
+                    </form>
+
                 </div>
             </div>
         </div>
