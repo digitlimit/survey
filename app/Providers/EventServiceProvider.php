@@ -29,6 +29,15 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        //
+//        //
+//        Log::info('My awesome log message', ['key' => 'value']);
+//
+//        Event::listen('illuminate.log', function ($level, $message, $context) {
+//            //$level example - info, error etc
+//            //$message example - Model not found --
+//            //$context - usually and object
+//
+//            //send your email here
+//        });
     }
 }

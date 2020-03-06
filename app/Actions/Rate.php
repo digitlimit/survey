@@ -3,6 +3,7 @@
 namespace App\Actions;
 
 use App\Models\StationSurvey;
+use App\Models\StationSurveyAnswer;
 use TCG\Voyager\Actions\AbstractAction;
 
 class Rate extends AbstractAction
@@ -19,10 +20,10 @@ class Rate extends AbstractAction
 
     public function getPolicy()
     {
-        $station_survey = StationSurvey::where([
+        $station_survey = StationSurveyAnswer::where([
             'station_id' => $this->data->id,
             'survey_header_id' => 1, //TODO fix
-            'user_id' => auth()->user()->id
+//            'user_id' => auth()->user()->id //this ensure two users can survey same station twice
         ])->count();
 
         //TODO rated does not exists as policy , I'm ust using it to hide button

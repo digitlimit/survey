@@ -2,7 +2,8 @@
 
 namespace App\Charts;
 
-use ConsoleTVs\Charts\Classes\C3\Chart;
+use ConsoleTVs\Charts\Classes\Chartjs\Chart;
+use App\Customs\Chartjs\Dataset;
 
 class Rating extends Chart
 {
@@ -15,4 +16,11 @@ class Rating extends Chart
     {
         parent::__construct();
     }
+
+    /**
+     * Chartjs dataset class.
+     *
+     * @var object
+     */
+    public $dataset = Dataset::class;
 }

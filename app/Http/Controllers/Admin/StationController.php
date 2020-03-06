@@ -22,10 +22,10 @@ class StationController extends BaseController
         $user =  $request->user();
         $survey = SurveyHeader::find(1); //TODO Hard coded fix
 
-        $station_survey = StationSurvey::where([
+        $station_survey = StationSurveyAnswer::where([
             'station_id' => $station_id,
             'survey_header_id' => $survey->id, //TODO fix
-            'user_id' => $user->id
+//            'user_id' => $user->id
         ])->first();
 
         if($station_survey){
@@ -65,10 +65,10 @@ class StationController extends BaseController
             $station = Station::findOrFail($station_id);
 
             //check if already completed survey
-            $station_survey = StationSurvey::where([
+            $station_survey = StationSurveyAnswer::where([
                 'station_id' => $station_id,
                 'survey_header_id' => $request->survey,
-                'user_id' => $user->id
+//                'user_id' => $user->id
             ])->first();
 
             if($station_survey){

@@ -35,7 +35,23 @@ class User extends \TCG\Voyager\Models\User
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'is_admin', 'is_cmo', 'is_bm'
     ];
 
 
+
+    public function getIsAdminAttribute()
+    {
+
+    }
+
+    public function getIsCmoAttribute()
+    {
+        return $this->role->name == 'cmo';
+    }
+
+    public function getIsBmAttribute()
+    {
+
+    }
 }
