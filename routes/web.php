@@ -36,11 +36,18 @@ Route::group(['prefix' => 'admin'], function ()
             //Custom routes
             Route::name('stations.')->prefix('stations')->namespace('Admin')->group(function()
             {
+                Route::get('survey/analysis', 'StationController@generateAnalysis')
+                    ->name('generateAnalysis');
+
                 Route::get('survey/{id}', 'StationController@showSurveyForm')
                     ->name('rate');
 
                 Route::post('survey/{id}', 'StationController@storeSurveyForm')
                     ->name('rate');
+
+                Route::get('survey/{id}/answers', 'StationController@showSurveyAnswers')
+                    ->name('survey.answers');
+
             });
 
             // Main Admin and Logout Route

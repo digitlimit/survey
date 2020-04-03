@@ -149,5 +149,35 @@ if (\Illuminate\Support\Str::startsWith(Auth::user()->avatar, 'http://') || \Ill
     @foreach(config('voyager.additional_js') as $js)<script type="text/javascript" src="{{ asset($js) }}"></script>@endforeach
 @endif
 
+<div class="modal modal-default fade" tabindex="-1" id="bar-detail-modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-label="{{ __('voyager::generic.close') }}">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">
+                    <i class="voyager-list"></i> <span id="bar-detail-modal-title">Hook</span>
+                </h4>
+            </div>
+            <div class="modal-body" id="bar-detail-modal-body">
+                <div class="bar-details">
+                    {{--                        <div class="detail">--}}
+                    {{--                            <div class="title">Visibility</div>--}}
+                    {{--                            <div class="value">3</div>--}}
+                    {{--                            <div class="value">3</div>--}}
+                    {{--                        </div>--}}
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-right" data-dismiss="modal">
+                    {{ __('voyager::generic.cancel') }}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

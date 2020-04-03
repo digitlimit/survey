@@ -26,7 +26,7 @@ class UsersTableSeeder extends Seeder
                 'avatar' => 'users/default.png',
                 'email_verified_at' => NULL,
                 'password' => '$2y$10$iA60FPwOyqAlU/AxlK4kmusQiJbbUkmJoAfIxvRwIvS7zOXMe0M5m',
-                'remember_token' => 'emXGAJVvOp1X3ZsZidsACHv26kGl1UGoAom7FVP9TtNLuJL9QbP2x3h2TnMP',
+                'remember_token' => '9VJUavvesQXwFaRGbwuW8Hc0y5tAYpYNUXm7C7dVG4SLmMmUMcxwE9xA6TWt',
                 'settings' => NULL,
                 'created_at' => '2020-02-22 22:13:52',
                 'updated_at' => '2020-02-22 22:13:52',
@@ -72,6 +72,20 @@ class UsersTableSeeder extends Seeder
                 'settings' => '{"locale":"en"}',
                 'created_at' => '2020-02-23 21:17:49',
                 'updated_at' => '2020-02-23 21:17:49',
+            ),
+            4 => 
+            array (
+                'id' => 5,
+                'role_id' => 3,
+                'name' => 'Henry',
+                'email' => 'emills@ovhenergy.com',
+                'avatar' => 'users/default.png',
+                'email_verified_at' => NULL,
+                'password' => '$2y$10$ynNP0jqcCyWvaDxU7UbineT4warLluCi2/3itqR.QT/liZosep9Hu',
+                'remember_token' => NULL,
+                'settings' => '{"locale":"en"}',
+                'created_at' => '2020-02-28 01:16:48',
+                'updated_at' => '2020-02-28 01:16:48',
             ),
         ));
         

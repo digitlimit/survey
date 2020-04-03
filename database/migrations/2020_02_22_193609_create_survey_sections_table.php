@@ -21,7 +21,8 @@ class CreateSurveySectionsTable extends Migration {
 //			$table->string('section_name', 80)->nullable()->unique();
 			$table->string('section_title', 45)->nullable();
 			$table->string('section_subheading', 45)->nullable();
-			$table->boolean('section_required_yn')->default(1);
+			$table->boolean('section_required_yn')->nullable()->default(1);
+            $table->integer('weight')->default(0);
 			$table->timestamps();
 		});
 	}

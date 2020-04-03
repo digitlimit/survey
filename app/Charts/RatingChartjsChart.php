@@ -3,9 +3,10 @@
 namespace App\Charts;
 
 use ConsoleTVs\Charts\Classes\Chartjs\Chart;
-use App\Customs\Chartjs\Dataset;
+//use ConsoleTVs\Charts\Classes\C3\Chart;
+use App\Customs\Chart\ChartjsDataset as Dataset;
 
-class Rating extends Chart
+class RatingChartjsChart extends Chart
 {
     /**
      * Initializes the chart.

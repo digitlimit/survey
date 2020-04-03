@@ -1,6 +1,6 @@
-<?php namespace App\Customs\Chartjs;
+<?php namespace App\Customs\Chart;
 
-class Dataset extends \ConsoleTVs\Charts\Classes\Chartjs\Dataset{
+class C3Dataset extends \ConsoleTVs\Charts\Classes\C3\Dataset{
     protected $payload = [];
 
     /**

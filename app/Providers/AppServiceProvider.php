@@ -30,5 +30,6 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
         DataRow::observe(DataRowObserver::class);
         Voyager::addAction(\App\Actions\Rate::class);
+        Voyager::addAction(\App\Actions\DeleteRate::class);
     }
 }

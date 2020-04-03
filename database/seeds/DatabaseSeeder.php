@@ -43,12 +43,13 @@ class DatabaseSeeder extends Seeder
         $this->call(CountriesTableSeeder::class);
         $this->call(InputTypesTableSeeder::class);
         $this->call(OptionChoicesTableSeeder::class);
+        //$this->call(StationSurveyAnswersTableSeeder::class);
 
         $this->call(PagesTableSeeder::class);
         $this->call(PasswordResetsTableSeeder::class);
         $this->call(FailedJobsTableSeeder::class);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-        $this->call(StationsTableSeeder::class);
+
     }
 }
