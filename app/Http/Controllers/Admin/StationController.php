@@ -24,6 +24,7 @@ use TCG\Voyager\Events\BreadDataUpdated;
 use TCG\Voyager\Events\BreadImagesDeleted;
 use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
 use App\Helpers\Chart;
+use App\Exports\SurveyAnalysisExport;
 
 class StationController extends BaseController
 {
@@ -299,5 +300,17 @@ class StationController extends BaseController
         return response()->json([
             'data' => $chart
         ]);
+    }
+
+    public function generateAnalysisDownload(Request $request, $station_id=null)
+    {
+        $data = Chart::data();
+
+        if(!$data){
+            //TODO return error message. data is empty
+            return redirect()->back();
+        }
+
+        return new SurveyAnalysisExport($data);
     }
 }

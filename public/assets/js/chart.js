@@ -19,22 +19,67 @@ let makeId  = (length) => {
  */
 let initialSectionButtonEvents = (data) => {
     $('.btn-export').click(function(event) {
-        alert($(this).closest('.panel').data('id'))
+        let payload = $(this).closest('.panel').data('payload');
+        let single_station = $(this).closest('.panel').data('single-station');
+
+        if(single_station == true){
+            let criteria = payload[Object.keys(payload)[0]][0];
+            let station_id = criteria.station_id;
+            download({station_id:station_id});
+        }else{
+            download();
+        }
     });
 
     $('.btn-bar').click(function(event) {
         let chart = $(this).closest('.panel').data('c3-chart');
+
+        let chart_id = $(this).closest('.panel').data('id');
+
+        // //hide chart
+        $(`#${chart_id}`).show();
+
+        $(this).closest('.panel').find('table').remove();
         chart.transform('bar');
     });
 
     $('.btn-pie').click(function(event) {
         let chart = $(this).closest('.panel').data('c3-chart');
+
+        let chart_id = $(this).closest('.panel').data('id');
+
+        // //hide chart
+        $(`#${chart_id}`).show();
+
+        $(this).closest('.panel').find('table').remove();
         chart.transform('pie');
     });
 
     $('.btn-donut').click(function(event) {
         let chart = $(this).closest('.panel').data('c3-chart');
+
+        let chart_id = $(this).closest('.panel').data('id');
+
+        // //hide chart
+        $(`#${chart_id}`).show();
+
+
+        $(this).closest('.panel').find('table').remove();
         chart.transform('donut');
+    });
+
+    $('.btn-table').click(function(event) {
+        let data = $(this).closest('.panel').data('chart-data');
+        let chart_id = $(this).closest('.panel').data('id');
+
+        // //hide chart
+        $(`#${chart_id}`).hide();
+        $(this).closest('.panel').find('table').remove();
+
+        //generate table
+        let tableHTML = generateTable(data);
+
+        $(`#${chart_id}`).after(tableHTML);
     });
 };
 
@@ -72,7 +117,7 @@ let showDetailsModal = (payload_details, title, section_weight, total_weight) =>
         ${payload_details}
         
         <div class="detail" style="font-weight: bold;">
-            <div class="title">Extra Score</div>
+            <div class="title">Bonus Score</div>
             <div class="value"></div>
             <div class="value">${section_weight}</div>
         </div>
@@ -89,6 +134,53 @@ let showDetailsModal = (payload_details, title, section_weight, total_weight) =>
     $('#bar-detail-modal').find('#bar-detail-modal-body .bar-details').html(details);
 
     $('#bar-detail-modal').modal('show');
+};
+
+let generateTable = (data) => {
+
+    let rows = '';
+    let total = 0;
+    let bonus = 0;
+
+    data.forEach((row, index)=>{
+        rows += `
+            <tr>
+                <th>${row[0]}</th>
+                <th>${row[1]}</th>
+            </tr>
+        `;
+    });
+
+    let bonus_row = `  
+        <th style="font-weight: bold">Bonus</th>
+            <th>${bonus}</th>
+        </tr>
+    `;
+
+    let total_row = `
+        <tr>
+            <th style="font-weight: bold">Total</th>
+            <th>${total}</th>
+        </tr>
+    `;
+
+    return `
+    <div class="table-responsive">
+        <table id="dataTable" class="table">
+            <thead>
+                <tr>
+                    <th>Criteria</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+            
+                ${rows}
+                <!-- TODO add bonus and total rows -->
+            </tbody>
+        </table>
+    </div>
+    `;
 };
 
 /**
@@ -216,8 +308,11 @@ let addSectionToPage = (title, section_id) => {
             <button class="btn btn-sm btn-danger pull-right btn-donut">
                 <i class="fa fa-circle-o"></i>
             </button>
+            <button class="btn btn-sm btn-primary pull-right btn-table">
+                <i class="fa fa-table"></i>
+            </button>
         </div>
-        <div class="panel-body">
+        <div class="panel-body" style="padding: 0;">
             <div id="${section_id}"></div>
         </div>
     </div>`;
@@ -248,6 +343,7 @@ let getResults = () => {
 
             let title = 'Stations scores';
             let section_elem = addSectionToPage(title);
+
             let chart_type = 'bar'; //TODO get this from form
             let chart_data = data.station_totals;
             let payload = data.station_total_payloads;
@@ -312,12 +408,19 @@ let getResults = () => {
             //we are going to put chart instance in data attribute of an element, so we can use later
             $(section_elem).closest('.panel').data('c3-chart', chart);
 
+            //we are going to use this data to generate table later
+            $(section_elem).closest('.panel').data('chart-data', chart_data);
+
+            $(section_elem).closest('.panel').data('payload', payload);
+
+            $(section_elem).closest('.panel').data('single-station', false);
+
             //initialize button events
             initialSectionButtonEvents();
         }
 
 
-// console.log(data.section_payloads)
+        // console.log(data.section_payloads)
         //This will list all the stations in sections with different criterias
         if(typeof data.sections == 'object' && typeof data.sections.length) {
 
@@ -328,7 +431,7 @@ let getResults = () => {
                 let chart_data = data.sections[station_name];
                 let payload = data.section_payloads[station_name];
 
-                console.log(chart_data)
+                // console.log(payload,data.sections);
 
                 let chart = generateChart(section_elem, chart_data, chart_type, station_name, payload, (data, i, payload) => {
                     console.log(data)
@@ -352,20 +455,38 @@ let getResults = () => {
                 //we are going to put chart instance in data attribute of an element, so we can use later
                 $(section_elem).closest('.panel').data('c3-chart', chart);
 
+                //we are going to use this data to generate table later
+                $(section_elem).closest('.panel').data('chart-data', chart_data);
+
+                $(section_elem).closest('.panel').data('payload', payload);
+
+                $(section_elem).closest('.panel').data('single-station', true);
+
                 //initialize button events
                 initialSectionButtonEvents();
             }
         }
-
     });
 };
 
-getResults();
+let download = (params) => {
+    params = typeof params == 'object' ? params : {};
+    params.q = $('#q').val();
 
+    let query_string = jQuery.param(params);
+    let url = $('#btn-all-export').data('url'); //TODO
+
+    window.location.href = `${url}?${query_string}`;
+};
 
 //search text box
 $('#q').keyup(function(){
+    $('#result').html('');
     getResults();
 });
 
+$('#btn-all-export').click(function(){
+    download();
+});
 
+getResults();

@@ -8,6 +8,10 @@ class Chart
 {
     public static function query()
     {
+        //params
+        $q = request('q');
+        $station_id = (int) request('station_id');
+
         $query = StationSurveyAnswer::query()
             ->join('stations AS s', 'station_survey_answers.station_id', '=', 's.id')
             ->join('survey_headers AS sh', 'station_survey_answers.survey_header_id', '=', 'sh.id')
@@ -33,11 +37,15 @@ class Chart
                 q.question_name AS question
             ");
 
-        if($q = request('q')){
+        if($q){
             $query = $query->where('s.name', 'like', "%{$q}%")
                 ->orWhere('s.address', 'like', "%{$q}%")
                 ->orWhere('st.name', 'like', "%{$q}%")
                 ->orWhere('u.name', 'like', "%{$q}%");
+        }
+
+        if($station_id){
+            $query = $query->where('s.id', $station_id);
         }
 
         return $query;

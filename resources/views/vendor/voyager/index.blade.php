@@ -18,7 +18,8 @@
                 <div class="panel panel-bordered">
                     <div class="panel-body">
 
-                        <div class="row">
+                        @if(auth()->user()->is_cmo)
+                            <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <input id="q" name="q" placeholder="Search..." type="text" class="form-control">
@@ -27,13 +28,17 @@
 {{--                                <button class="btn btn-sm btn-success">--}}
 {{--                                    <i class="fa fa-filter"></i> Filter--}}
 {{--                                </button>--}}
-                                <button class="btn btn-sm btn-info">
+                                <button id="btn-all-export"
+                                        data-url="{{route('voyager.stations.generate.analysis.download')}}"
+                                        class="btn btn-sm btn-info">
                                     <i class="fa fa-download"></i> Export
                                 </button>
-                                <button class="btn btn-sm btn-warning">
+                                <button id="btn-all-chart"
+                                        class="btn btn-sm btn-warning">
                                     <i class="fa fa-bar-chart"></i> Charts
                                 </button>
-                                <button class="btn btn-sm btn-default">
+                                <button id="btn-all-table"
+                                        class="btn btn-sm btn-default">
                                     <i class="fa fa-table"></i> Tables
                                 </button>
                             </div>
@@ -57,14 +62,42 @@
 {{--                                            </button>--}}
 {{--                                        </div>--}}
 
-{{--                                        <div class="panel-body">--}}
-{{--                                            <div id="chart1"></div>--}}
+{{--                                        <div class="panel-body" style="padding: 0">--}}
+{{--                                            <div class="table-responsive">--}}
+{{--                                                <table id="dataTable" class="table">--}}
+{{--                                                    <thead>--}}
+{{--                                                    <tr>--}}
+{{--                                                        <th>Criteria</th>--}}
+{{--                                                        <th>Score</th>--}}
+{{--                                                    </tr>--}}
+{{--                                                    </thead>--}}
+{{--                                                    <tbody>--}}
+{{--                                                        <tr>--}}
+{{--                                                            <th>Competition</th>--}}
+{{--                                                            <th>20</th>--}}
+{{--                                                        </tr>--}}
+{{--                                                        <tr>--}}
+{{--                                                            <th>Traffic</th>--}}
+{{--                                                            <th>40</th>--}}
+{{--                                                        </tr>--}}
+{{--                                                        <tr>--}}
+{{--                                                            <th style="font-weight: bold">Bonus</th>--}}
+{{--                                                            <th>0</th>--}}
+{{--                                                        </tr>--}}
+{{--                                                        <tr>--}}
+{{--                                                            <th style="font-weight: bold">Total</th>--}}
+{{--                                                            <th>40</th>--}}
+{{--                                                        </tr>--}}
+{{--                                                    </tbody>--}}
+{{--                                                </table>--}}
+{{--                                            </div>--}}
 {{--                                        </div>--}}
 {{--                                    </div>--}}
 {{--                                </div>--}}
 {{--                                <div class="tables"></div>--}}
                             </div>
                         </div>
+                        @endif
 
                     </div>
                 </div>
@@ -132,6 +165,20 @@
         .result .panel-heading .btn{
             padding: 2px 7px;
             margin: 0 0 0 5px;
+        }
+
+        .result table thead tr th:first-child{
+            padding-left: 15px;
+        }
+        .result table thead tr th{
+            font-weight: bold;
+        }
+
+        .result table tbody tr th:first-child{
+            padding-left: 15px;
+        }
+        .result table tbody tr th{
+
         }
     </style>
 @endpush

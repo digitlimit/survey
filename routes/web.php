@@ -39,6 +39,9 @@ Route::group(['prefix' => 'admin'], function ()
                 Route::get('survey/analysis', 'StationController@generateAnalysis')
                     ->name('generateAnalysis');
 
+                Route::get('survey/analysis/download/{station_id?}', 'StationController@generateAnalysisDownload')
+                    ->name('generate.analysis.download');
+
                 Route::get('survey/{id}', 'StationController@showSurveyForm')
                     ->name('rate');
 
